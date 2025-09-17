@@ -9,14 +9,15 @@
 </head>
 <body>
 <nav>
-
+    <a href="{% url 'catalog:home' %}">Home Page</a>
+    <a href="{% url 'catalog:product_list' %}">Product List</a>
 </nav>
 <main>
     {% block content %}
     {% endblock %}
 </main>
 <footer>
-    &copy; {{ current_year }} My Shop
+    &copy; {% now 'Y' %} My Shop
 </footer>
 </body>
 </html>
