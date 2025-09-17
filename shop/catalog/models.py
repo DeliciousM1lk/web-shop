@@ -8,7 +8,7 @@ def product_image_path(instance, filename):
 
 class Product(models.Model):
     name = models.CharField(verbose_name="Название", max_length=200)
-    slug = models.SlugField(verbose_name="Слаг", max_length=200, unique=True)
+    slug = models.SlugField(verbose_name="Слаг", max_length=200, unique=True, null=True, blank=True)
     price = models.DecimalField(verbose_name="Цена", max_digits=10, decimal_places=2)
     description = models.TextField(verbose_name="Описание", blank=True)
     created_at = models.DateTimeField(verbose_name="Создан", auto_now_add=True)
@@ -21,6 +21,10 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def main_image(self):
+        return self.images.filter(is_main=True).first() or self.images.first()
 
 
 class ProductImage(models.Model):
