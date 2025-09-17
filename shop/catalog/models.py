@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 def product_image_path(instance, filename):
-    return f"products/{instance.id}/{filename}"
+    return f"products/{instance.product_id}/{filename}"
 
 
 class Product(models.Model):

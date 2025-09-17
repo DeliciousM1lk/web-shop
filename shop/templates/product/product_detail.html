@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} Product Detail {% endblock %}
+
+{% block content %}
+<div>
+    {% if product.images.all %}
+    <div>
+        {% for img in product.images.all %}
+        <a href="{{ img.image.url }}">
+            <img src="{{ img.image.url }}" alt="{{ img.alt|default:'product.name' }}"
+                 style="width: 100px; height: 100px; margin: 5px;">
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div>
+        <h1>{{ product.name }}</h1>
+        <p>Price: {{ product.price }}</p>
+        <p>{{ product.description }}</p>
+    </div>
+</div>
+{% endblock %}
